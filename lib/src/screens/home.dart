@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/cat.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,6 +11,15 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   @override
   Widget build(context) {
-    return const Text('HOME');
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Animation!'),
+      ),
+      body: buildAnimation(),
+    );
+  }
+
+  Widget buildAnimation() {
+    return const Cat();
   }
 }
