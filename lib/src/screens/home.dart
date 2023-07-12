@@ -9,6 +9,14 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  late Animation<double> catAnimation;
+  late AnimationController catController;
+
+  @override
+  initState() {
+    super.initState();
+  }
+
   @override
   Widget build(context) {
     return Scaffold(
