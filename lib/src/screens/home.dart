@@ -13,9 +13,23 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   late Animation<double> catAnimation;
   late AnimationController catController;
 
+  late Animation<double> boxAnimation;
+  late AnimationController boxController;
+
   @override
   initState() {
     super.initState();
+
+    boxController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    boxAnimation = Tween(begin: 0.0, end: pi).animate(
+      CurvedAnimation(
+        parent: boxController,
+        curve: Curves.linear,
+      ),
+    );
 
     catController = AnimationController(
       duration: const Duration(microseconds: 200),
