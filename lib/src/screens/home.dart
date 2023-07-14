@@ -99,6 +99,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   Widget buildLeftFlap() {
     return Positioned(
       left: 3.0,
+      child: AnimatedBuilder(
+        animation: boxAnimation,
+        builder: (BuildContext context, Widget? child) {
+          return Transform.rotate(
+            angle: boxAnimation.value,
+            alignment: Alignment.topLeft,
+            child: child,
+          );
+        },
       child: Transform.rotate(
         angle: pi * 0.6,
         alignment: Alignment.topLeft,
@@ -107,6 +116,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           width: 125.0,
           color: Colors.brown,
         ),
+      ),
       ),
     );
   }
