@@ -20,7 +20,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    catAnimation = Tween(begin: 0.0, end: 100.0).animate(
+    catAnimation = Tween(begin: -50.0, end: 100.0).animate(
       CurvedAnimation(
         parent: catController,
         curve: Curves.easeIn,
@@ -61,7 +61,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       animation: catAnimation,
       builder: (BuildContext context, Widget? child) {
         return Positioned(
-          bottom: catAnimation.value,
+          top: catAnimation.value,
           right: 0.0,
           left: 0.0,
           child: child!,
