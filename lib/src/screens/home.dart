@@ -30,6 +30,12 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         curve: Curves.linear,
       ),
     );
+    boxAnimation.addStatusListener((AnimationStatus status) {
+      if (status == AnimationStatus.completed) {
+        boxController.repeat();
+      }
+    });
+    boxController.forward();
 
     catController = AnimationController(
       duration: const Duration(microseconds: 200),
@@ -108,15 +114,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: child,
           );
         },
-      child: Transform.rotate(
-        angle: pi * 0.6,
-        alignment: Alignment.topLeft,
-        child: Container(
-          height: 10.0,
-          width: 125.0,
-          color: Colors.brown,
+        child: Transform.rotate(
+          angle: pi * 0.6,
+          alignment: Alignment.topLeft,
+          child: Container(
+            height: 10.0,
+            width: 125.0,
+            color: Colors.brown,
+          ),
         ),
-      ),
       ),
     );
   }
