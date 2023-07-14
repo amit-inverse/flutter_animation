@@ -24,10 +24,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       duration: const Duration(microseconds: 300),
       vsync: this,
     );
-    boxAnimation = Tween(begin: 0.0, end: 0.08).animate(
+    boxAnimation = Tween(begin: pi * 0.6, end: pi * 0.65).animate(
       CurvedAnimation(
         parent: boxController,
-        curve: Curves.linear,
+        curve: Curves.easeInOut,
       ),
     );
     boxAnimation.addStatusListener((AnimationStatus status) {
@@ -52,6 +52,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   onTap() {
+    boxController.stop();
+    
     if (catController.status == AnimationStatus.completed) {
       catController.reverse();
     } else if (catController.status == AnimationStatus.dismissed) {
@@ -117,14 +119,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: child,
           );
         },
-        child: Transform.rotate(
-          angle: pi * 0.6,
-          alignment: Alignment.topLeft,
-          child: Container(
-            height: 10.0,
-            width: 125.0,
-            color: Colors.brown,
-          ),
+        child: Container(
+          height: 10.0,
+          width: 125.0,
+          color: Colors.brown,
         ),
       ),
     );
@@ -137,19 +135,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         animation: boxAnimation,
         builder: (BuildContext context, Widget? child) {
           return Transform.rotate(
-            angle: boxAnimation.value,
+            angle: -boxAnimation.value,
             alignment: Alignment.topRight,
             child: child,
           );
         },
-        child: Transform.rotate(
-          angle: pi * 0.6,
-          alignment: Alignment.topLeft,
-          child: Container(
-            height: 10.0,
-            width: 125.0,
-            color: Colors.brown,
-          ),
+        child: Container(
+          height: 10.0,
+          width: 125.0,
+          color: Colors.brown,
         ),
       ),
     );
