@@ -21,10 +21,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     super.initState();
 
     boxController = AnimationController(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(microseconds: 300),
       vsync: this,
     );
-    boxAnimation = Tween(begin: 0.0, end: pi).animate(
+    boxAnimation = Tween(begin: 0.0, end: 0.08).animate(
       CurvedAnimation(
         parent: boxController,
         curve: Curves.linear,
@@ -32,7 +32,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     );
     boxAnimation.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.completed) {
-        boxController.repeat();
+        boxController.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        boxController.forward();
       }
     });
     boxController.forward();
